@@ -1,0 +1,91 @@
+<div class="container mt-4">
+  <div class="row">
+    <!-- Search Form -->
+    <div class="col-md-8">
+      <form [formGroup]="searchForm" (ngSubmit)="onSubmit()">
+        <div class="input-group mb-3">
+          <input type="text" class="form-control" formControlName="query" placeholder="Search GitHub repositories...">
+          <button class="btn btn-primary" type="submit" [disabled]="loading">
+            <span *ngIf="loading" class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
+            Search
+          </button>
+        </div>
+      </form>
+
+      <!-- Error Message -->
+      <div *ngIf="error" class="alert alert-danger" role="alert">
+        {{ error }}
+      </div>
+
+      <!-- Search Results -->
+      <div *ngIf="searchResults.length > 0">
+        <h3>Search Results ({{ totalResults }} total)</h3>
+        <div class="list-group">
+          <a *ngFor="let repo of searchResults" [href]="repo.html_url" target="_blank" class="list-group-item list-group-item-action">
+            <div class="d-flex w-100 justify-content-between">
+              <h5 class="mb-1">{{ repo.full_name }}</h5>
+              <small class="text-muted">⭐ {{ repo.stargazers_count }}</small>
+            </div>
+            <p class="mb-1">{{ repo.description }}</p>
+            <small class="text-muted">
+              <span *ngIf="repo.language" class="badge bg-secondary me-2">{{ repo.language }}</span>
+              Updated {{ repo.updated_at | date:'medium' }}
+            </small>
+          </a>
+        </div>
+
+        <!-- Load More Button -->
+        <div class="text-center mt-3" *ngIf="searchResults.length < totalResults">
+          <button class="btn btn-outline-primary" (click)="loadMore()" [disabled]="loading">
+            <span *ngIf="loading" class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
+            Load More
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Search History -->
+    <div class="col-md-4" *ngIf="authService.currentUserValue">
+      <div class="card">
+        <div class="card-header">
+          <h5 class="mb-0">Search History</h5>
+        </div>
+        <div class="card-body">
+          <div *ngIf="searchHistory.length === 0" class="text-muted">
+            No search history yet
+          </div>
+          <div class="list-group">
+            <div *ngFor="let search of searchHistory" class="list-group-item">
+              <div class="d-flex w-100 justify-content-between">
+                <h6 class="mb-1">{{ search.query }}</h6>
+                <small class="text-muted">{{ formatDate(search.timestamp) }}</small>
+              </div>
+              <small class="text-muted">{{ search.resultsCount }} results</small>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- User Stats -->
+      <div class="card mt-3">
+        <div class="card-header">
+          <h5 class="mb-0">Your Stats</h5>
+        </div>
+        <div class="card-body">
+          <div class="d-flex justify-content-between mb-2">
+            <span>Total Searches:</span>
+            <strong>{{ userStats.totalSearches || 0 }}</strong>
+          </div>
+          <div class="d-flex justify-content-between mb-2">
+            <span>Common Search:</span>
+            <strong>{{ userStats.mostCommonSearch || 'None' }}</strong>
+          </div>
+          <div class="d-flex justify-content-between">
+            <span>Search Streak:</span>
+            <strong>{{ userStats.searchStreak || 0 }} days</strong>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

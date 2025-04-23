@@ -1,0 +1,57 @@
+<div class="container">
+    <div class="jumbotron mb-4">
+        <h1 class="display-4 text-center">
+            <i class="fab fa-github mr-2"></i> GitHub Search History
+        </h1>
+        <hr class="my-4">
+        <p class="lead text-center">
+            <code>&lt;users&gt;</code> you've searched for <code>&lt;/users&gt;</code>
+        </p>
+    </div>
+
+    <div class="alert alert-info text-center" *ngIf="searchedUsers.length === 0">
+        <i class="fa fa-info-circle mr-2"></i> <code>404:</code> No searched profiles found.
+        <div class="mt-2">
+            <a routerLink="/" class="alert-link"><i class="fa fa-home mr-1"></i> $ cd /home</a> or 
+            <a routerLink="/search" class="alert-link"><i class="fa fa-search mr-1"></i> $ git search users</a>
+        </div>
+    </div>
+
+    <div class="row" *ngIf="searchedUsers.length > 0">
+        <div class="col-md-12">
+            <div class="repo-stats mb-3">
+                <span class="repo-stat"><i class="fa fa-users mr-1"></i> Total Users: {{ searchedUsers.length }}</span>
+            </div>
+            
+            <div class="card mb-3" *ngFor="let user of searchedUsers">
+                <div class="card-header d-flex justify-content-between align-items-center">
+                    <h5 class="mb-0">
+                        <i class="fa fa-user-circle mr-2"></i> <span class="user-login">{{ user.username }}</span>
+                    </h5>
+                    <div class="badge">
+                        <i class="fa fa-history mr-1"></i> <span class="monospace">v{{ user.visitCount }}.0.0</span>
+                    </div>
+                </div>
+                <div class="card-body">
+                    <p class="card-text">
+                        <i class="fa fa-calendar-alt mr-1"></i>
+                        <small class="text-muted">Last commit: <span class="monospace">{{ formatDate(user.lastVisited) }}</span></small>
+                    </p>
+                    
+                    <div *ngIf="user.recentProjects && user.recentProjects.length > 0" class="project-section">
+                        <h6><i class="fa fa-code-branch mr-1"></i> <span class="monospace">git branch --list</span></h6>
+                        <ul class="list-group list-group-flush mb-3">
+                            <li class="list-group-item" *ngFor="let project of user.recentProjects.slice(0, 3)">
+                                <i class="fa fa-folder mr-2"></i> <span class="monospace">$ ./{{ project }}</span>
+                            </li>
+                        </ul>
+                    </div>
+                    
+                    <button class="btn btn-primary" (click)="viewProfile(user.username)">
+                        <i class="fa fa-external-link-alt mr-1"></i> git checkout profile
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

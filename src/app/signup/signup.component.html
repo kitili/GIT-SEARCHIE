@@ -1,0 +1,93 @@
+<div class="container">
+  <div class="row justify-content-center">
+    <div class="col-md-10">
+      <div class="card mt-5">
+        <div class="card-header">
+          <h3 class="text-center">Sign Up</h3>
+        </div>
+        <div class="card-body p-4">
+          <form [formGroup]="signupForm" (ngSubmit)="onSubmit()">
+            <div class="form-group mb-4">
+              <label for="name" class="form-label">Full Name</label>
+              <input type="text" 
+                     class="form-control form-control-lg" 
+                     id="name" 
+                     formControlName="name"
+                     [ngClass]="{ 'is-invalid': submitted && f.name.errors }">
+              <div *ngIf="submitted && f.name.errors" class="invalid-feedback">
+                <div *ngIf="f.name.errors.required">Name is required</div>
+              </div>
+            </div>
+
+            <div class="form-group mb-4">
+              <label for="email" class="form-label">Email</label>
+              <input type="email" 
+                     class="form-control form-control-lg" 
+                     id="email" 
+                     formControlName="email"
+                     [ngClass]="{ 'is-invalid': submitted && f.email.errors }">
+              <div *ngIf="submitted && f.email.errors" class="invalid-feedback">
+                <div *ngIf="f.email.errors.required">Email is required</div>
+                <div *ngIf="f.email.errors.email">Email must be a valid email address</div>
+              </div>
+            </div>
+
+            <div class="form-group mb-4">
+              <label for="password" class="form-label">Password</label>
+              <input type="password" 
+                     class="form-control form-control-lg" 
+                     id="password" 
+                     formControlName="password"
+                     [ngClass]="{ 'is-invalid': submitted && f.password.errors }">
+              <div *ngIf="submitted && f.password.errors" class="invalid-feedback">
+                <div *ngIf="f.password.errors.required">Password is required</div>
+                <div *ngIf="f.password.errors.minlength">Password must be at least 6 characters</div>
+              </div>
+            </div>
+
+            <div class="form-group mb-4">
+              <label for="confirmPassword" class="form-label">Confirm Password</label>
+              <input type="password" 
+                     class="form-control form-control-lg" 
+                     id="confirmPassword" 
+                     formControlName="confirmPassword"
+                     [ngClass]="{ 'is-invalid': submitted && f.confirmPassword.errors }">
+              <div *ngIf="submitted && f.confirmPassword.errors" class="invalid-feedback">
+                <div *ngIf="f.confirmPassword.errors.required">Please confirm your password</div>
+                <div *ngIf="f.confirmPassword.errors.mustMatch">Passwords must match</div>
+              </div>
+            </div>
+
+            <div class="form-group">
+              <button [disabled]="loading" class="btn btn-primary btn-lg w-100">
+                <span *ngIf="loading" class="spinner-border spinner-border-sm"></span>
+                Sign Up
+              </button>
+            </div>
+
+            <div class="text-center my-4">
+              <span class="text-muted">OR</span>
+            </div>
+
+            <div class="form-group">
+              <button type="button" 
+                      (click)="signInWithGoogle()" 
+                      [disabled]="loading" 
+                      class="btn btn-outline-dark btn-lg w-100">
+                <img src="https://www.gstatic.com/firebasejs/ui/2.0.0/images/auth/google.svg" 
+                     alt="Google logo" 
+                     style="width: 20px; margin-right: 10px;">
+                Sign up with Google
+              </button>
+            </div>
+
+            <div *ngIf="error" class="alert alert-danger mt-4">{{error}}</div>
+          </form>
+        </div>
+        <div class="card-footer text-center p-3">
+          <p class="mb-0">Already have an account? <a routerLink="/login">Login</a></p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div> 

@@ -1,0 +1,174 @@
+.container {
+  margin-top: 0;
+  background: #0d1117;
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 2rem;
+}
+
+.card {
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  border: none;
+  border-radius: 8px;
+  background: #161b22;
+  color: #c9d1d9;
+  width: 100%;
+}
+
+.card-header {
+  border-top-left-radius: 8px;
+  border-top-right-radius: 8px;
+  background: #0d1117;
+  border-bottom: 1px solid #30363d;
+  color: #58a6ff;
+  padding: 1.5rem;
+}
+
+.form-control {
+  height: 45px;
+  border-radius: 4px;
+  background: #0d1117;
+  border: 1px solid #30363d;
+  color: #c9d1d9;
+}
+
+.form-control:focus {
+  box-shadow: none;
+  border-color: #58a6ff;
+  background: #0d1117;
+  color: #c9d1d9;
+}
+
+.form-control::placeholder {
+  color: #8b949e;
+}
+
+.btn-primary {
+  height: 45px;
+  font-weight: 600;
+  background: #238636;
+  border: none;
+}
+
+.btn-primary:hover {
+  background: #2ea043;
+}
+
+.btn-primary:focus {
+  box-shadow: none;
+}
+
+.btn-google {
+  height: 45px;
+  font-weight: 600;
+  background: #0d1117;
+  border: 1px solid #30363d;
+  color: #c9d1d9;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+}
+
+.btn-google:hover {
+  background: #161b22;
+  border-color: #58a6ff;
+  color: #58a6ff;
+}
+
+.btn-google:focus {
+  box-shadow: none;
+}
+
+.btn-google i {
+  font-size: 1.2rem;
+}
+
+.invalid-feedback {
+  font-size: 80%;
+  font-weight: 500;
+  color: #f85149;
+}
+
+label {
+  font-weight: 500;
+  margin-bottom: 6px;
+  color: #c9d1d9;
+}
+
+.alert {
+  border-radius: 4px;
+  background: rgba(248, 81, 73, 0.1);
+  border: 1px solid #f85149;
+  color: #f85149;
+}
+
+a {
+  color: #58a6ff;
+  text-decoration: none;
+}
+
+a:hover {
+  color: #79c0ff;
+  text-decoration: underline;
+}
+
+.divider {
+  display: flex;
+  align-items: center;
+  text-align: center;
+  margin: 1.5rem 0;
+  color: #8b949e;
+}
+
+.divider::before,
+.divider::after {
+  content: '';
+  flex: 1;
+  border-bottom: 1px solid #30363d;
+}
+
+.divider span {
+  padding: 0 1rem;
+  font-size: 0.9rem;
+}
+
+.social-login {
+  margin-bottom: 1.5rem;
+}
+
+.social-login p {
+  color: #8b949e;
+  margin-bottom: 1rem;
+}
+
+.social-buttons {
+  display: flex;
+  gap: 1rem;
+  justify-content: center;
+}
+
+.social-btn {
+  background: #0d1117;
+  border: 1px solid #30363d;
+  color: #c9d1d9;
+  padding: 0.75rem 1.5rem;
+  border-radius: 6px;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  transition: all 0.3s ease;
+}
+
+.social-btn:hover {
+  background: #161b22;
+  border-color: #58a6ff;
+  color: #58a6ff;
+  transform: translateY(-1px);
+}
+
+.social-btn i {
+  font-size: 1.25rem;
+} 

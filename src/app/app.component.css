@@ -1,0 +1,15 @@
+#profile{
+    background-color: rgb(43, 226, 202);
+}
+
+.content-wrapper {
+  min-height: calc(100vh - 120px); /* Account for navbar and footer height */
+  padding-bottom: 60px; /* Space for fixed footer */
+}
+
+/* Ensure the footer stays at the bottom */
+:host {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
