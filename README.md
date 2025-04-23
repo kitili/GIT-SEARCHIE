@@ -40,6 +40,8 @@ Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.
 
 ## Running end-to-end tests
 
+[![Netlify Status](https://api.netlify.com/api/v1/badges/b0308e99-c010-4ebf-9869-14911adafd25/deploy-status)](https://app.netlify.com/sites/git-finder-kiki/deploys)
+
 Run `ng e2e` to execute the end-to-end tests via [Protractor](http://www.protractortest.org/).
 
 # GIT-search
